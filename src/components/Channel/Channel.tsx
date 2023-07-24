@@ -227,12 +227,7 @@ const UnMemoizedChannel = <
 >(
   props: PropsWithChildren<ChannelProps<StreamChatGenerics, V>>,
 ) => {
-  const {
-    channel: propsChannel,
-    EmptyPlaceholder = null,
-    LoadingErrorIndicator,
-    LoadingIndicator = DefaultLoadingIndicator,
-  } = props;
+  const { channel: propsChannel, EmptyPlaceholder = null, LoadingErrorIndicator } = props;
 
   const {
     channel: contextChannel,
@@ -247,14 +242,6 @@ const UnMemoizedChannel = <
   const channel = propsChannel || contextChannel;
 
   const className = clsx(chatClass, theme, channelClass);
-
-  if (channelsQueryState.queryInProgress === 'reload' && LoadingIndicator) {
-    return (
-      <div className={className}>
-        <LoadingIndicator />
-      </div>
-    );
-  }
 
   if (channelsQueryState.error && LoadingErrorIndicator) {
     return (
